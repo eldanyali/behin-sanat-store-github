@@ -1,24 +1,24 @@
-# فروشگاه تجهیزات تأسیساتی بهین صنعت رادین زنگان
+# Behin Sanat Radin Zangan Building Services Equipment Store
 
-سامانه تحت وب معرفی و فروش تجهیزات تأسیسات آب، گاز و تأسیسات مکانیکی ساختمان که با Python، Flask و SQLite پیاده سازی شده است.
+A web-based platform for showcasing and selling water, gas, and mechanical building services equipment, developed with Python, Flask, and SQLite.
 
-این پروژه برای ارائه کارآموزی بازطراحی و بومی سازی شده و شامل رابط فارسی، چیدمان راست چین، طراحی واکنش گرا، مدیریت محصولات، سبد خرید، علاقه مندی ها و ثبت سفارش است.
+This project was redesigned and localized as an internship project. It includes a Persian user interface, right-to-left layout, responsive design, product management, a shopping cart, a wishlist, and order placement.
 
-## امکانات پروژه
+## Features
 
-- نمایش محصولات و دسته بندی تجهیزات تأسیساتی
-- صفحه جزئیات هر محصول
-- ثبت نام و ورود کاربران
-- سبد خرید و محاسبه مبلغ کل
-- فهرست علاقه مندی ها
-- ثبت سفارش و مشاهده سفارش های کاربر
-- پنل مدیر برای افزودن، ویرایش و حذف محصولات
-- مشاهده سفارش ها توسط مدیر
-- رابط فارسی و راست چین
-- طراحی واکنش گرا برای کامپیوتر، تبلت و موبایل
-- استفاده از SQLite بدون نیاز به نصب سرور پایگاه داده
+- Browse products and building services equipment categories
+- View a dedicated details page for each product
+- User registration and login
+- Shopping cart with automatic total calculation
+- Wishlist management
+- Order placement and user order history
+- Administrator panel for adding, editing, and deleting products
+- Administrator access to customer orders
+- Persian right-to-left user interface
+- Responsive design for desktop, tablet, and mobile devices
+- SQLite database with no separate database server required
 
-## فناوری های استفاده شده
+## Technologies Used
 
 - Python 3.12
 - Flask 2.3.3
@@ -27,9 +27,9 @@
 - CSS3
 - Bootstrap
 - JavaScript
-- فونت Vazirmatn
+- Vazirmatn font
 
-## ساختار پروژه
+## Project Structure
 
 ```text
 behin-sanat-store/
@@ -46,93 +46,93 @@ behin-sanat-store/
 └── templates/
 ```
 
-فایل `database.db` پس از اجرای `init_db.py` ساخته می شود و نباید همراه اطلاعات شخصی در مخزن عمومی قرار بگیرد.
+The `database.db` file is created after running `init_db.py` and should not be committed to a public repository if it contains personal data.
 
-## راه اندازی در Windows 11
+## Setup on Windows 11
 
-ابتدا مخزن را دریافت کرده و وارد پوشه پروژه شوید:
+First, clone the repository and open the project directory:
 
 ```powershell
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/eldanyali/behin-sanat-store-github
 Set-Location behin-sanat-store
 ```
 
-محیط مجازی را بسازید:
+Create a virtual environment:
 
 ```powershell
 py -3.12 -m venv .venv
 ```
 
-وابستگی ها را نصب کنید:
+Install the dependencies:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install --timeout 120 --retries 5 -r requirements.txt
 ```
 
-پایگاه داده نمونه را بسازید:
+Initialize the sample database:
 
 ```powershell
 .\.venv\Scripts\python.exe init_db.py
 ```
 
-برنامه را اجرا کنید:
+Run the application:
 
 ```powershell
 .\.venv\Scripts\python.exe app.py
 ```
 
-سپس آدرس زیر را در مرورگر باز کنید:
+Then open the following address in your browser:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-## حساب مدیر نسخه نمایشی
+## Demo Administrator Account
 
 ```text
-ایمیل: admin@nielit.gov.in
-رمز عبور: admin@nielit.gov.in
+Email: admin@nielit.gov.in
+Password: admin@nielit.gov.in
 ```
 
-این حساب فقط برای اجرای محلی و نمایش آموزشی در نظر گرفته شده است. برای استفاده واقعی باید ایمیل، رمز عبور و کلید محرمانه برنامه تغییر کند.
+This account is intended only for local development and educational demonstrations. For real-world use, the email address, password, and application secret key must be changed.
 
-برای تعیین کلید محرمانه در PowerShell می توان از دستور زیر استفاده کرد:
+To set the secret key in PowerShell, use the following command:
 
 ```powershell
-$env:SECRET_KEY = "یک-کلید-طولانی-و-تصادفی"
+$env:SECRET_KEY = "a-long-random-secret-key"
 ```
 
-## بررسی سلامت پروژه
+## Project Health Check
 
-فایل `final_audit.ps1` را در پوشه اصلی پروژه قرار دهید و اجرا کنید:
+Place `final_audit.ps1` in the project root and run it with the following command:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\final_audit.ps1
 ```
 
-نتیجه بررسی در فایل `final-audit.txt` ذخیره می شود.
+The audit results are saved to `final-audit.txt`.
 
-## نکات نسخه نمایشی
+## Demo Notes
 
-- قیمت ها نمونه هستند و قیمت روز بازار محسوب نمی شوند.
-- پرداخت آنلاین واقعی در پروژه پیاده سازی نشده است.
-- پروژه برای آموزش و ارائه کارآموزی ساخته شده و برای استفاده عملی نیازمند بررسی امنیتی بیشتر است.
-- در نسخه عملی باید ذخیره رمز عبور با الگوریتم امن، محافظت CSRF و تنظیمات استقرار تولیدی اضافه شود.
+- Product prices are sample values and do not represent current market prices.
+- Real online payment processing has not been implemented.
+- This project was created for educational and internship presentation purposes. Additional security review is required before production use.
+- A production version should include secure password hashing, CSRF protection, and production-ready deployment settings.
 
-## توسعه دهنده
+## Developer
 
-طراحی رابط فارسی، بومی سازی، بازطراحی تجربه کاربری و توسعه نسخه تأسیساتی:
+Persian interface design, localization, user experience redesign, and development of the building services edition:
 
-**الهه**
+**Elaheh**
 
-عنوان پروژه کارآموزی:
+Internship project title:
 
-**طراحی و پیاده سازی سامانه تحت وب معرفی و فروش تجهیزات تأسیسات ساختمانی شرکت بهین صنعت رادین زنگان**
+**Design and Implementation of a Web-Based Platform for Showcasing and Selling Building Services Equipment for Behin Sanat Radin Zangan Company**
 
-## منبع اولیه و مجوز
+## Original Source and License
 
-این پروژه بر پایه مخزن متن باز زیر توسعه یافته و به شکل گسترده برای حوزه تأسیسات ساختمانی بازطراحی و بومی سازی شده است:
+This project is based on the following open-source repository and has been extensively redesigned and localized for the building services equipment industry:
 
 [lovnishverma/nielitecommerece](https://github.com/lovnishverma/nielitecommerece)
 
-مخزن اولیه تحت مجوز MIT منتشر شده است. مطابق شرایط این مجوز، فایل `LICENSE` و اطلاعیه حق نشر نویسنده اولیه باید در نسخه منتشر شده باقی بماند.
+The original repository was released under the MIT License. In accordance with the license terms, the `LICENSE` file and the original author's copyright notice must remain in the published version.
