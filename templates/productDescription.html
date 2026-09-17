@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data[1] }} | بهین صنعت رادین زنگان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/persian.css') }}">
+    <style>
+        /* این بخش عمدا داخل همین فایل است تا اندازه تصویر به CSS قدیمی وابسته نباشد. */
+        .product-detail-main {
+            padding-top: 28px;
+        }
+
+        .product-breadcrumb {
+            display: flex;
+            margin-bottom: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: #647484;
+            font-size: 0.78rem;
+        }
+
+        .product-breadcrumb a {
+            color: #1687c9;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .product-breadcrumb i {
+            color: #aab7c1;
+            font-size: 0.62rem;
+        }
+
+        .product-detail-card {
+            display: grid !important;
+            grid-template-columns: minmax(300px, 400px) minmax(0, 1fr) !important;
+            width: min(1080px, 100%);
+            min-height: 0 !important;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #dce5ec;
+            border-radius: 22px;
+            background: #ffffff;
+            box-shadow: 0 18px 45px rgba(11, 34, 57, 0.11);
+        }
+
+        .product-detail-visual {
+            position: relative;
+            display: flex !important;
+            min-width: 0;
+            min-height: 430px !important;
+            padding: 48px 28px 24px !important;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-left: 1px solid #e7edf2;
+            background: radial-gradient(circle at 50% 42%, #ffffff 0%, #f1f5f8 65%, #e8eef3 100%);
+        }
+
+        .product-stock-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: inline-flex;
+            padding: 6px 10px;
+            align-items: center;
+            gap: 6px;
+            border-radius: 30px;
+            font-size: 0.74rem;
+            font-weight: 750;
+        }
+
+        .product-stock-badge.in-stock {
+            color: #20724e;
+            background: #e9f8f0;
+        }
+
+        .product-stock-badge.out-of-stock {
+            color: #ad3340;
+            background: #fff0f1;
+        }
+
+        .product-detail-image {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 320px !important;
+            height: 300px !important;
+            max-height: 300px !important;
+            padding: 16px !important;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(11, 34, 57, 0.07);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 12px 28px rgba(11, 34, 57, 0.08);
+        }
+
+        .product-detail-image img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 288px !important;
+            max-height: 268px !important;
+            margin: 0 auto !important;
+            object-fit: contain !important;
+            float: none !important;
+        }
+
+        .product-image-note {
+            display: flex;
+            margin-top: 16px;
+            align-items: center;
+            gap: 7px;
+            color: #647484;
+            font-size: 0.73rem;
+        }
+
+        .product-image-note i {
+            color: #f28c28;
+        }
+
+        .product-detail-content {
+            display: flex !important;
+            min-width: 0;
+            padding: clamp(28px, 4vw, 48px) !important;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .product-category-label {
+            display: inline-flex;
+            width: fit-content;
+            padding: 6px 11px;
+            align-items: center;
+            gap: 7px;
+            border-radius: 30px;
+            background: #edf5fa;
+            color: #1687c9;
+            font-size: 0.76rem;
+            font-weight: 750;
+        }
+
+        .product-detail-content h1 {
+            margin: 14px 0 7px;
+            color: #0b2239;
+            font-size: clamp(1.55rem, 3vw, 2.05rem) !important;
+            line-height: 1.5;
+        }
+
+        .product-title-line {
+            width: 58px;
+            height: 4px;
+            margin-bottom: 19px;
+            border-radius: 5px;
+            background: #f28c28;
+        }
+
+        .product-description {
+            margin: 0 0 21px;
+            color: #526271;
+            font-size: 0.92rem;
+            line-height: 2;
+            text-align: justify;
+        }
+
+        .product-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 19px;
+            gap: 11px;
+        }
+
+        .product-info-box {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            padding: 13px 15px;
+            align-items: end;
+            border: 1px solid #dce5ec;
+            border-radius: 13px;
+            background: #f9fbfc;
+        }
+
+        .product-info-box > span {
+            grid-column: 1 / -1;
+            margin-bottom: 4px;
+            color: #647484;
+            font-size: 0.74rem;
+            font-weight: 650;
+        }
+
+        .product-info-box > span i {
+            margin-left: 4px;
+            color: #f28c28;
+        }
+
+        .product-info-box strong {
+            color: #0b2239;
+            font-size: 1.08rem;
+            font-weight: 850;
+        }
+
+        .product-info-box small {
+            color: #647484;
+            font-size: 0.72rem;
+        }
+
+        .product-price-box {
+            border-color: rgba(22, 135, 201, 0.22);
+            background: #f2f8fc;
+        }
+
+        .product-price-box strong {
+            color: #1687c9;
+        }
+
+        .product-service-points {
+            display: grid;
+            margin-bottom: 22px;
+            gap: 7px;
+        }
+
+        .product-service-points div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #566674;
+            font-size: 0.8rem;
+        }
+
+        .product-service-points i {
+            color: #2c9367;
+        }
+
+        .product-detail-actions {
+            display: flex;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .product-main-action,
+        .product-disabled-action {
+            min-width: 190px;
+        }
+
+        .product-disabled-action {
+            color: #7a8791;
+            background: #e9eef2;
+            cursor: not-allowed;
+        }
+
+        .product-bottom-actions {
+            margin-top: 19px;
+        }
+
+        @media (max-width: 820px) {
+            .product-detail-card {
+                grid-template-columns: 1fr !important;
+                max-width: 650px;
+            }
+
+            .product-detail-visual {
+                min-height: 380px !important;
+                border-bottom: 1px solid #e7edf2;
+                border-left: 0;
+            }
+
+            .product-detail-image {
+                max-width: 300px !important;
+                height: 280px !important;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .product-detail-card {
+                border-radius: 17px;
+            }
+
+            .product-detail-visual {
+                min-height: 315px !important;
+                padding: 52px 16px 20px !important;
+            }
+
+            .product-detail-image {
+                max-width: 245px !important;
+                height: 225px !important;
+                padding: 11px !important;
+            }
+
+            .product-detail-image img {
+                max-width: 220px !important;
+                max-height: 200px !important;
+            }
+
+            .product-detail-content {
+                padding: 24px 19px 27px !important;
+            }
+
+            .product-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-description {
+                text-align: right;
+            }
+
+            .product-detail-actions,
+            .product-detail-actions .customer-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="customer-page product-detail-page">
+    <header class="customer-header">
+        <div class="customer-header-inner">
+            <a class="customer-brand" href="{{ url_for('root') }}">
+                <img src="{{ url_for('static', filename='images/gtnielit logo.png') }}" alt="لوگوی بهین صنعت رادین زنگان">
+                <span>
+                    <strong>بهین صنعت رادین زنگان</strong>
+                    <small>تأسیسات آب، گاز و ساختمان</small>
+                </span>
+            </a>
+
+            <nav class="customer-nav" aria-label="دسترسی سریع">
+                <a href="{{ url_for('root') }}">
+                    <i class="fas fa-home"></i>
+                    <span>صفحه اصلی</span>
+                </a>
+                <a href="{{ url_for('cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>سبد خرید</span>
+                    {% if noOfItems %}<b class="customer-count">{{ noOfItems }}</b>{% endif %}
+                </a>
+                <a href="{{ url_for('wishlist') }}">
+                    <i class="fas fa-heart"></i>
+                    <span>علاقه مندی ها</span>
+                </a>
+                {% if loggedIn %}
+                    <a href="{{ url_for('profileHome') }}">
+                        <i class="fas fa-user"></i>
+                        <span>{% if firstName|upper == "ADMIN" %}حساب مدیر{% else %}حساب کاربری{% endif %}</span>
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('loginForm') }}">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>ورود</span>
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="customer-main product-detail-main">
+        <nav class="product-breadcrumb" aria-label="مسیر صفحه">
+            <a href="{{ url_for('root') }}">صفحه اصلی</a>
+            <i class="fas fa-chevron-left"></i>
+            <a href="{{ url_for('root') }}#products">محصولات</a>
+            <i class="fas fa-chevron-left"></i>
+            <span>{{ data[1] }}</span>
+        </nav>
+
+        <article class="product-detail-card">
+            <section class="product-detail-visual">
+                {% if data[5] > 0 %}
+                    <span class="product-stock-badge in-stock"><i class="fas fa-check"></i> موجود در انبار</span>
+                {% else %}
+                    <span class="product-stock-badge out-of-stock"><i class="fas fa-times"></i> ناموجود</span>
+                {% endif %}
+
+                <div class="product-detail-image">
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + data[4]) }}"
+                        onerror="this.onerror=null; this.src='/static/images/product-default.png';"
+                        alt="{{ data[1] }}"
+                    >
+                </div>
+
+                <div class="product-image-note">
+                    <i class="fas fa-shield-alt"></i>
+                    تصویر محصول جهت معرفی تجهیزات
+                </div>
+            </section>
+
+            <section class="product-detail-content">
+                <span class="product-category-label"><i class="fas fa-tools"></i> تجهیزات تأسیسات ساختمانی</span>
+                <h1>{{ data[1] }}</h1>
+                <div class="product-title-line"></div>
+
+                <p class="product-description">{{ data[3] }}</p>
+
+                <div class="product-info-grid">
+                    <div class="product-info-box product-price-box">
+                        <span><i class="fas fa-tag"></i> قیمت محصول</span>
+                        <strong>{{ "{:,.0f}".format(data[2]) }}</strong>
+                        <small>تومان</small>
+                    </div>
+
+                    <div class="product-info-box">
+                        <span><i class="fas fa-boxes-stacked"></i> موجودی انبار</span>
+                        <strong>{{ data[5] }}</strong>
+                        <small>عدد</small>
+                    </div>
+                </div>
+
+                <div class="product-service-points">
+                    <div><i class="fas fa-check-circle"></i> مناسب پروژه های ساختمانی</div>
+                    <div><i class="fas fa-check-circle"></i> مشخصات فنی قابل بررسی</div>
+                    <div><i class="fas fa-check-circle"></i> ثبت سفارش به صورت آنلاین</div>
+                </div>
+
+                <div class="product-detail-actions">
+                    {% if data[5] > 0 %}
+                        <a class="customer-btn customer-btn-accent product-main-action" href="{{ url_for('addToCart', productId=data[0]) }}">
+                            <i class="fas fa-cart-plus"></i>
+                            افزودن به سبد خرید
+                        </a>
+                    {% else %}
+                        <span class="customer-btn product-disabled-action">
+                            <i class="fas fa-ban"></i>
+                            محصول ناموجود است
+                        </span>
+                    {% endif %}
+
+                    <a class="customer-btn customer-btn-secondary" href="{{ url_for('add_to_wishlist', productId=data[0]) }}">
+                        <i class="far fa-heart"></i>
+                        افزودن به علاقه مندی ها
+                    </a>
+                </div>
+            </section>
+        </article>
+
+        <div class="customer-bottom-actions product-bottom-actions">
+            <a class="customer-btn customer-btn-secondary" href="{{ url_for('root') }}#products">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به فهرست محصولات
+            </a>
+        </div>
+    </main>
+</body>
+</html>

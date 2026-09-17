@@ -1,0 +1,47 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local databases and private backups
+# Every database is generated locally with init_db.py and must stay out of GitHub.
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-journal
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs, reports and archives
+*.log
+*.zip
+final-audit*.txt
+
+# Temporary migration and backup files
+backup_before_farsi/
+translate_site.py
+update_products_fa.py
+GITHUB_SETUP_FA.md
+productDescription-FINAL*.html
+
+# Hosting leftovers from the original sample project
+.glitch-assets

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علاقه مندی های من | بهین صنعت رادین زنگان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/persian.css') }}">
+</head>
+<body class="customer-page">
+    <header class="customer-header">
+        <div class="customer-header-inner">
+            <a class="customer-brand" href="{{ url_for('root') }}">
+                <img src="{{ url_for('static', filename='images/gtnielit logo.png') }}" alt="لوگوی بهین صنعت رادین زنگان">
+                <span>
+                    <strong>بهین صنعت رادین زنگان</strong>
+                    <small>تأسیسات آب، گاز و ساختمان</small>
+                </span>
+            </a>
+
+            <nav class="customer-nav" aria-label="دسترسی سریع">
+                <a href="{{ url_for('root') }}">
+                    <i class="fas fa-home"></i>
+                    <span>صفحه اصلی</span>
+                </a>
+                <a href="{{ url_for('cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>سبد خرید</span>
+                </a>
+                <a class="active" href="{{ url_for('wishlist') }}" aria-current="page">
+                    <i class="fas fa-heart"></i>
+                    <span>علاقه مندی ها</span>
+                </a>
+                <a href="{{ url_for('user_orders') }}">
+                    <i class="fas fa-box"></i>
+                    <span>سفارش های من</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="customer-main">
+        <section class="customer-page-heading">
+            <div class="customer-heading-icon"><i class="fas fa-heart"></i></div>
+            <div>
+                <span class="customer-eyebrow">انتخاب های ذخیره شده</span>
+                <h1>علاقه مندی های من</h1>
+                <p>محصولات مورد علاقه خود را اینجا نگهداری و بررسی کنید.</p>
+            </div>
+        </section>
+
+        {% if wishlist_items %}
+            <section class="customer-product-grid" aria-label="محصولات مورد علاقه">
+                {% for item in wishlist_items %}
+                    <article class="customer-product-card">
+                        <a class="customer-product-image" href="{{ url_for('productDescription', productId=item[0]) }}">
+                            <img
+                                src="{{ url_for('static', filename='uploads/' + item[3]) }}"
+                                onerror="this.onerror=null; this.src='/static/images/product-default.png';"
+                                alt="{{ item[1] }}"
+                            >
+                        </a>
+
+                        <div class="customer-product-body">
+                            <span class="customer-card-label"><i class="fas fa-check-circle"></i> موجود در فروشگاه</span>
+                            <h2>
+                                <a href="{{ url_for('productDescription', productId=item[0]) }}">{{ item[1] }}</a>
+                            </h2>
+                            <div class="customer-price">{{ "{:,.0f}".format(item[2]) }} <span>تومان</span></div>
+
+                            <div class="customer-card-actions">
+                                <a class="customer-btn customer-btn-primary" href="{{ url_for('productDescription', productId=item[0]) }}">
+                                    <i class="fas fa-eye"></i>
+                                    مشاهده محصول
+                                </a>
+                                <form action="{{ url_for('remove_from_wishlist') }}" method="post">
+                                    <input type="hidden" name="productId" value="{{ item[0] }}">
+                                    <button class="customer-btn customer-btn-danger" type="submit">
+                                        <i class="fas fa-trash-alt"></i>
+                                        حذف
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </section>
+        {% else %}
+            <section class="customer-empty-state">
+                <div class="customer-empty-icon"><i class="far fa-heart"></i></div>
+                <h2>فهرست علاقه مندی های شما خالی است</h2>
+                <p>محصولات مورد نظر خود را از صفحه اصلی به این فهرست اضافه کنید.</p>
+                <a class="customer-btn customer-btn-accent" href="{{ url_for('root') }}#products">
+                    <i class="fas fa-tools"></i>
+                    مشاهده محصولات
+                </a>
+            </section>
+        {% endif %}
+
+        <div class="customer-bottom-actions">
+            <a class="customer-btn customer-btn-secondary" href="{{ url_for('root') }}">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به صفحه اصلی
+            </a>
+        </div>
+    </main>
+</body>
+</html>

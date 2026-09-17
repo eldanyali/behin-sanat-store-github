@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل مدیریت</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: white;
+            background-color: blue;
+            border-radius: 5px;
+        }
+
+        .btn-danger {
+            background-color: red;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        td img {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        .description {
+            max-width: 250px;
+            word-wrap: break-word;
+            text-align: left;
+            padding: 5px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/persian.css') }}">
+</head>
+<body>
+
+    <h2>پنل مدیریت محصولات</h2>
+
+    <a href="{{ url_for('add_product') }}" class="btn">افزودن محصول جدید</a>
+    <a href="{{ url_for('vieworders') }}" class="btn">مشاهده سفارش ها</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>شناسه</th>
+                <th>تصویر</th>
+                <th>نام محصول</th>
+                <th>موجودی</th>
+                <th>توضیحات</th>
+                <th>قیمت</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td><img src="{{ url_for('static', filename='uploads/' + product[4]) }}" alt="تصویر محصول"></td>
+                <td>{{ product[1] }}</td>
+                <td>{{ "%.2f"|format(product[5]) }}</td>
+                <td class="description">{{ product[3] }}</td>
+                <td>{{ "{:,.0f}".format(product[2]) }} تومان</td>
+                <td class="actions">
+                    <a href="{{ url_for('edit_product', productId=product[0]) }}" class="btn">ویرایش</a>
+                    <a href="{{ url_for('delete_product', productId=product[0]) }}" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('root') }}" class="btn">بازگشت به صفحه اصلی</a>
+
+</body>
+</html>

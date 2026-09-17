@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید | بهین صنعت رادین زنگان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/persian.css') }}">
+</head>
+<body class="customer-page">
+    <header class="customer-header">
+        <div class="customer-header-inner">
+            <a class="customer-brand" href="{{ url_for('root') }}">
+                <img src="{{ url_for('static', filename='images/gtnielit logo.png') }}" alt="لوگوی بهین صنعت رادین زنگان">
+                <span>
+                    <strong>بهین صنعت رادین زنگان</strong>
+                    <small>تأسیسات آب، گاز و ساختمان</small>
+                </span>
+            </a>
+
+            <nav class="customer-nav" aria-label="دسترسی سریع">
+                <a href="{{ url_for('root') }}">
+                    <i class="fas fa-home"></i>
+                    <span>صفحه اصلی</span>
+                </a>
+                <a class="active" href="{{ url_for('cart') }}" aria-current="page">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>سبد خرید</span>
+                    {% if noOfItems %}<b class="customer-count">{{ noOfItems }}</b>{% endif %}
+                </a>
+                <a href="{{ url_for('wishlist') }}">
+                    <i class="fas fa-heart"></i>
+                    <span>علاقه مندی ها</span>
+                </a>
+                <a href="{{ url_for('user_orders') }}">
+                    <i class="fas fa-box"></i>
+                    <span>سفارش های من</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="customer-main">
+        <section class="customer-page-heading">
+            <div class="customer-heading-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div>
+                <span class="customer-eyebrow">مرور و ثبت سفارش</span>
+                <h1>سبد خرید</h1>
+                <p>محصولات انتخاب شده و مبلغ سفارش خود را بررسی کنید.</p>
+            </div>
+        </section>
+
+        {% if products %}
+            <div class="customer-cart-layout">
+                <section class="customer-cart-list" aria-label="محصولات سبد خرید">
+                    {% for row in products %}
+                        {% set quantity = row[4] if row|length > 4 else 1 %}
+                        <article class="customer-cart-item">
+                            <a class="customer-cart-image" href="{{ url_for('productDescription', productId=row[0]) }}">
+                                <img
+                                    src="{{ url_for('static', filename='uploads/' + row[3]) }}"
+                                    onerror="this.onerror=null; this.src='/static/images/product-default.png';"
+                                    alt="{{ row[1] }}"
+                                >
+                            </a>
+
+                            <div class="customer-cart-info">
+                                <span class="customer-card-label"><i class="fas fa-check-circle"></i> موجود در انبار</span>
+                                <h2><a href="{{ url_for('productDescription', productId=row[0]) }}">{{ row[1] }}</a></h2>
+                                <div class="customer-cart-meta">
+                                    <span><i class="fas fa-box-open"></i> تعداد: {{ quantity }}</span>
+                                    <span>قیمت واحد: {{ "{:,.0f}".format(row[2]) }} تومان</span>
+                                </div>
+                                <a class="customer-remove-link" href="{{ url_for('removeFromCart', productId=row[0]) }}">
+                                    <i class="fas fa-trash-alt"></i>
+                                    حذف از سبد خرید
+                                </a>
+                            </div>
+
+                            <div class="customer-cart-price">
+                                <small>مبلغ این محصول</small>
+                                <strong>{{ "{:,.0f}".format(row[2] * quantity) }}</strong>
+                                <span>تومان</span>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </section>
+
+                <aside class="customer-cart-summary">
+                    <div class="customer-summary-icon"><i class="fas fa-receipt"></i></div>
+                    <h2>خلاصه سفارش</h2>
+                    <div class="customer-summary-row">
+                        <span>تعداد کالا</span>
+                        <strong>{{ noOfItems }}</strong>
+                    </div>
+                    <div class="customer-summary-row customer-summary-total">
+                        <span>جمع کل</span>
+                        <strong>{{ "{:,.0f}".format(totalPrice) }} <small>تومان</small></strong>
+                    </div>
+                    <a class="customer-btn customer-btn-accent customer-btn-wide" href="{{ url_for('checkout') }}">
+                        ادامه و ثبت سفارش
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <a class="customer-summary-back" href="{{ url_for('root') }}#products">
+                        <i class="fas fa-plus"></i>
+                        افزودن محصول دیگر
+                    </a>
+                </aside>
+            </div>
+        {% else %}
+            <section class="customer-empty-state">
+                <div class="customer-empty-icon"><i class="fas fa-shopping-basket"></i></div>
+                <h2>سبد خرید شما خالی است</h2>
+                <p>برای ثبت سفارش، ابتدا یکی از تجهیزات را به سبد خرید اضافه کنید.</p>
+                <a class="customer-btn customer-btn-accent" href="{{ url_for('root') }}#products">
+                    <i class="fas fa-tools"></i>
+                    مشاهده محصولات
+                </a>
+            </section>
+        {% endif %}
+
+        <div class="customer-bottom-actions">
+            <a class="customer-btn customer-btn-secondary" href="{{ url_for('root') }}">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به صفحه اصلی
+            </a>
+        </div>
+    </main>
+</body>
+</html>

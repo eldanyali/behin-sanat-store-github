@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفارش های من | بهین صنعت رادین زنگان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/persian.css') }}">
+</head>
+<body class="customer-page">
+    <header class="customer-header">
+        <div class="customer-header-inner">
+            <a class="customer-brand" href="{{ url_for('root') }}">
+                <img src="{{ url_for('static', filename='images/gtnielit logo.png') }}" alt="لوگوی بهین صنعت رادین زنگان">
+                <span>
+                    <strong>بهین صنعت رادین زنگان</strong>
+                    <small>تأسیسات آب، گاز و ساختمان</small>
+                </span>
+            </a>
+
+            <nav class="customer-nav" aria-label="دسترسی سریع">
+                <a href="{{ url_for('root') }}">
+                    <i class="fas fa-home"></i>
+                    <span>صفحه اصلی</span>
+                </a>
+                <a href="{{ url_for('cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>سبد خرید</span>
+                </a>
+                <a href="{{ url_for('wishlist') }}">
+                    <i class="fas fa-heart"></i>
+                    <span>علاقه مندی ها</span>
+                </a>
+                <a class="active" href="{{ url_for('user_orders') }}" aria-current="page">
+                    <i class="fas fa-box"></i>
+                    <span>سفارش های من</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="customer-main">
+        <section class="customer-page-heading">
+            <div class="customer-heading-icon"><i class="fas fa-clipboard-list"></i></div>
+            <div>
+                <span class="customer-eyebrow">سوابق خرید</span>
+                <h1>سفارش های من</h1>
+                <p>جزئیات سفارش های ثبت شده را در این بخش مشاهده کنید.</p>
+            </div>
+        </section>
+
+        {% if orders %}
+            <section class="customer-orders-panel">
+                <div class="customer-orders-caption">
+                    <div>
+                        <i class="fas fa-boxes-stacked"></i>
+                        <strong>فهرست سفارش ها</strong>
+                    </div>
+                    <span>{{ orders|length }} مورد</span>
+                </div>
+
+                <div class="customer-table-wrap">
+                    <table class="customer-orders-table">
+                        <thead>
+                            <tr>
+                                <th>شماره سفارش</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>مبلغ کل</th>
+                                <th>تاریخ سفارش</th>
+                                <th>وضعیت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td data-label="شماره سفارش"><span class="customer-order-id">#{{ order[0] }}</span></td>
+                                    <td data-label="نام محصول"><strong>{{ order[1] }}</strong></td>
+                                    <td data-label="تعداد">{{ order[2] }}</td>
+                                    <td data-label="مبلغ کل"><span class="customer-order-price">{{ "{:,.0f}".format(order[3]) }} تومان</span></td>
+                                    <td data-label="تاریخ سفارش"><time class="customer-order-date" dir="ltr">{{ order[4] }}</time></td>
+                                    <td data-label="وضعیت"><span class="customer-status"><i class="fas fa-check"></i> ثبت شده</span></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        {% else %}
+            <section class="customer-empty-state">
+                <div class="customer-empty-icon"><i class="fas fa-box-open"></i></div>
+                <h2>هنوز سفارشی ثبت نکرده اید</h2>
+                <p>پس از ثبت خرید، اطلاعات سفارش شما در این صفحه نمایش داده می شود.</p>
+                <a class="customer-btn customer-btn-accent" href="{{ url_for('root') }}#products">
+                    <i class="fas fa-tools"></i>
+                    مشاهده محصولات
+                </a>
+            </section>
+        {% endif %}
+
+        <div class="customer-bottom-actions">
+            <a class="customer-btn customer-btn-secondary" href="{{ url_for('root') }}">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به صفحه اصلی
+            </a>
+        </div>
+    </main>
+</body>
+</html>

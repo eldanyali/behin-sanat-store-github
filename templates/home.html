@@ -1,0 +1,904 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بهین صنعت رادین زنگان</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Professional Footer */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+  background: linear-gradient(135deg, #071b2f 0%, #0b2f50 65%, #123e63 100%);
+  color: #dce8f2;
+}
+
+.site-footer::before {
+  content: "";
+  display: none;
+  position: absolute;
+  left: -120px;
+  bottom: -190px;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(242, 140, 40, 0.22);
+  filter: blur(20px);
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-brand-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  padding: 7px;
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+.footer-company-name {
+  margin: 0 0 6px;
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.footer-slogan {
+  color: #f28c28;
+  font-size: 0.95rem;
+}
+
+.footer-heading {
+  margin-bottom: 18px;
+  color: #f28c28;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.footer-description {
+  max-width: 560px;
+  margin: 0;
+  color: #c7d6e2;
+  line-height: 2;
+  text-align: justify;
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 11px;
+}
+
+.footer-links a {
+  color: #dce8f2;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #f28c28;
+  padding-right: 5px;
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 13px;
+  color: #dce8f2;
+}
+
+.footer-contact i {
+  width: 22px;
+  color: #f28c28;
+  text-align: center;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-socials a:hover {
+  border-color: #f28c28;
+  background: #f28c28;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(0, 0, 0, 0.15);
+  color: #b8c8d5;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer-description {
+    text-align: right;
+  }
+
+  .footer-bottom-content {
+    gap: 8px;
+    text-align: center;
+  }
+}
+    /* Custom style for reduced navbar width */
+    .navbar-container {
+      max-width: 80%; /* Adjust this percentage as needed */
+      margin: 0 auto;
+    }
+    
+    /* For Product Cards */
+    .product-img {
+      height: 250px;
+      object-fit: contain;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    /* Carousel adjustments */
+    .carousel-img {
+      height: 450px;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .carousel-img {
+        height: 300px;
+      }
+    }
+  /* Compact footer adjustments */
+.site-footer {
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.footer-content {
+  padding-top: 30px;
+  padding-bottom: 25px;
+}
+
+.footer-brand-logo {
+  width: 58px;
+  height: 58px;
+  padding: 6px;
+}
+
+.footer-company-name {
+  margin-bottom: 4px;
+  font-size: 1.15rem;
+}
+
+.footer-slogan {
+  font-size: 0.88rem;
+}
+
+.footer-description {
+  max-width: 500px;
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.footer-heading {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-contact p {
+  margin-bottom: 9px;
+  font-size: 0.92rem;
+}
+
+.footer-bottom {
+  padding: 10px 0;
+  font-size: 0.85rem;
+}  
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  background-color: #f8fafc;
+}
+
+.navbar .nav-link {
+  color: #3f4b55;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #f28c28;
+}
+
+.product-price {
+  color: #0b5a83;
+  font-size: 1.05rem;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-cart-custom {
+  border: none;
+  background-color: #0b5a83;
+  color: #ffffff;
+}
+
+.btn-cart-custom:hover {
+  background-color: #083e5b;
+  color: #ffffff;
+}
+
+.btn-wishlist-custom {
+  border: none;
+  background-color: #f28c28;
+  color: #ffffff;
+}
+
+.btn-wishlist-custom:hover {
+  background-color: #d9720f;
+  color: #ffffff;
+}
+/* Professional Hero Carousel */
+.hero-section {
+  width: 100%;
+  margin-top: 92px;
+  padding: 0 24px;
+}
+
+.hero-slider {
+  position: relative;
+  max-width: 1500px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 5px solid #ffffff;
+  border-radius: 24px;
+  background-color: #071b2f;
+  box-shadow: 0 16px 45px rgba(7, 27, 47, 0.22);
+}
+
+.hero-slider .carousel-inner {
+  border-radius: 18px;
+}
+
+.hero-slider .carousel-item {
+  position: relative;
+  height: clamp(280px, 34vw, 500px);
+  background-color: #071b2f;
+}
+
+.hero-slider .carousel-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark layer for readable text */
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 27, 47, 0.08) 15%,
+    rgba(7, 27, 47, 0.25) 50%,
+    rgba(7, 27, 47, 0.85) 100%
+  );
+}
+
+/* Caption */
+.hero-caption {
+  position: absolute;
+  right: clamp(28px, 5vw, 75px);
+  bottom: clamp(55px, 7vw, 85px);
+  z-index: 3;
+  width: min(540px, calc(100% - 120px));
+  padding: 22px 25px;
+  border-right: 5px solid #f28c28;
+  border-radius: 16px;
+  background: rgba(7, 27, 47, 0.78);
+  color: #ffffff;
+  text-align: right;
+  backdrop-filter: blur(7px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.hero-kicker {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #f28c28;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.hero-caption h2 {
+  margin: 0 0 9px;
+  color: #ffffff;
+  font-size: clamp(1.35rem, 2.4vw, 2rem) !important;
+  font-weight: 800;
+}
+
+.hero-caption p {
+  margin: 0 0 16px;
+  color: #e2edf5;
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.hero-button {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  padding: 9px 17px;
+  border-radius: 9px;
+  background-color: #f28c28;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.hero-button:hover {
+  background-color: #d9720f;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Right and left arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background-color: rgba(7, 27, 47, 0.82);
+  color: #ffffff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-arrow-right {
+  right: 20px;
+}
+
+.carousel-arrow-left {
+  left: 20px;
+}
+
+.carousel-arrow:hover {
+  border-color: #f28c28;
+  background-color: #f28c28;
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Bottom indicators */
+.hero-slider .carousel-indicators {
+  z-index: 6;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.hero-slider .carousel-indicators button {
+  width: 26px;
+  height: 5px;
+  margin: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffffff;
+  opacity: 0.65;
+  transition: all 0.2s ease;
+}
+
+.hero-slider .carousel-indicators button.active {
+  width: 42px;
+  background-color: #f28c28;
+  opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-section {
+    margin-top: 78px;
+    padding: 0 10px;
+  }
+
+  .hero-slider {
+    border-width: 3px;
+    border-radius: 16px;
+  }
+
+  .hero-slider .carousel-item {
+  height: 300px;
+  }
+
+  .hero-caption {
+    right: 18px;
+    bottom: 42px;
+    width: calc(100% - 36px);
+    padding: 15px 17px;
+  }
+
+  .hero-caption p {
+    display: none;
+  }
+
+  .hero-caption h2 {
+    margin-bottom: 12px;
+    font-size: 1.2rem !important;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .carousel-arrow-right {
+    right: 10px;
+  }
+
+  .carousel-arrow-left {
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slider .carousel-item {
+    height: 240px;
+  }
+
+  .hero-button {
+    padding: 7px 13px;
+    font-size: 0.82rem;
+  }
+}
+  </style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/persian.css') }}">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm">
+    <div class="container navbar-container">
+      <a class="navbar-brand" href="/">
+        <img src="{{ url_for('static', filename='images/gtnielit logo.png') }}" class="logo" alt="لوگوی بهین صنعت رادین زنگان">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+
+  {% if loggedIn %}
+    <li class="nav-item">
+      <span class="nav-link">
+        سلام،
+        {% if firstName|upper == 'ADMIN' %}
+          ادمین
+        {% else %}
+          {{ firstName }}
+        {% endif %}
+      </span>
+    </li>
+  {% endif %}
+
+  <li class="nav-item">
+    <a class="nav-link" href="/">
+      <i class="fas fa-home"></i>
+      صفحه اصلی
+    </a>
+  </li>
+
+  {% if not loggedIn %}
+    <li class="nav-item">
+      <a class="nav-link" href="/loginForm">
+        <i class="fas fa-sign-in-alt"></i>
+        ورود
+      </a>
+    </li>
+  {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="/account/orders">
+        <i class="fas fa-box"></i>
+        سفارش های من
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/account/profile">
+        <i class="fas fa-user"></i>
+        حساب کاربری
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/logout">
+        <i class="fas fa-sign-out-alt"></i>
+        خروج
+      </a>
+    </li>
+  {% endif %}
+
+  <li class="nav-item">
+    <a class="nav-link" href="/cart">
+      <i class="fas fa-shopping-cart"></i>
+      سبد خرید ({{ noOfItems }})
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('wishlist') }}">
+      <i class="fas fa-heart"></i>
+      علاقه مندی ها
+    </a>
+  </li>
+
+</ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section / Carousel using Ratio Utility -->
+ <!-- Professional Hero Carousel -->
+<section class="hero-section">
+
+  <div
+    id="mainCarousel"
+    class="carousel slide carousel-fade hero-slider"
+    data-bs-ride="carousel"
+    data-bs-interval="3000"
+    data-bs-pause="false"
+    data-bs-touch="true"
+  >
+
+    <!-- Bottom indicators -->
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#mainCarousel"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="تصویر اول"
+      ></button>
+
+      <button
+        type="button"
+        data-bs-target="#mainCarousel"
+        data-bs-slide-to="1"
+        aria-label="تصویر دوم"
+      ></button>
+
+      <button
+        type="button"
+        data-bs-target="#mainCarousel"
+        data-bs-slide-to="2"
+        aria-label="تصویر سوم"
+      ></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <!-- First slide -->
+      <div class="carousel-item active">
+        <img
+          src="{{ url_for('static', filename='images/slidernew1.jpg') }}"
+          class="carousel-img"
+          alt="تأسیسات آب و آب رسانی"
+        >
+
+        <div class="hero-shade"></div>
+
+        <div class="hero-caption">
+          <span class="hero-kicker">
+            بهین صنعت رادین زنگان
+          </span>
+
+          <h2>راهکارهای تخصصی تأسیسات آب</h2>
+
+          <p>
+            معرفی تجهیزات مناسب برای اجرای اصولی سامانه های آب رسانی ساختمان
+          </p>
+
+          <a href="#products" class="hero-button">
+            مشاهده محصولات
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Second slide -->
+      <div class="carousel-item">
+        <img
+          src="{{ url_for('static', filename='images/slider4.jpg') }}"
+          class="carousel-img"
+          alt="تجهیزات و تأسیسات گاز رسانی"
+        >
+
+        <div class="hero-shade"></div>
+
+        <div class="hero-caption">
+          <span class="hero-kicker">
+            تجهیزات ساختمانی
+          </span>
+
+          <h2>تجهیزات ایمن گاز رسانی</h2>
+
+          <p>
+            راهکارهای کنترل فشار و اجرای شبکه گاز ساختمان
+          </p>
+
+          <a href="#products" class="hero-button">
+            مشاهده محصولات
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Third slide -->
+      <div class="carousel-item">
+        <img
+          src="{{ url_for('static', filename='images/slider.jpg') }}"
+          class="carousel-img"
+          alt="تأسیسات مکانیکی ساختمان"
+        >
+
+        <div class="hero-shade"></div>
+
+        <div class="hero-caption">
+          <span class="hero-kicker">
+            کیفیت و اجرای اصولی
+          </span>
+
+          <h2>تأسیسات مکانیکی ساختمان</h2>
+
+          <p>
+            تجهیزات کاربردی برای گرمایش و پروژه های ساختمانی
+          </p>
+
+          <a href="#products" class="hero-button">
+            مشاهده محصولات
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right arrow: next image -->
+    <button
+      class="carousel-arrow carousel-arrow-right"
+      type="button"
+      data-bs-target="#mainCarousel"
+      data-bs-slide="next"
+    >
+      <i class="fas fa-chevron-right"></i>
+      <span class="visually-hidden">تصویر بعدی</span>
+    </button>
+
+    <!-- Left arrow: previous image -->
+    <button
+      class="carousel-arrow carousel-arrow-left"
+      type="button"
+      data-bs-target="#mainCarousel"
+      data-bs-slide="prev"
+    >
+      <i class="fas fa-chevron-left"></i>
+      <span class="visually-hidden">تصویر قبلی</span>
+    </button>
+
+  </div>
+
+</section>
+
+  <!-- Product Grid -->
+  <section class="container mt-5" id="products">
+    <div class="row g-4">
+      {% for data in itemData %}
+        {% for row in data %}
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card shadow-sm text-center h-100">
+              <a href="/productDescription?productId={{row[0]}}">
+                <img src="{{ url_for('static', filename='uploads/' + row[4]) }}" class="card-img-top p-3 product-img" alt="{{ row[1] }}">
+              </a>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ row[1] }}</h5>
+                <p class="card-text product-price fw-bold">
+                  {{ "{:,.0f}".format(row[2]) }} تومان
+                </p>
+                <div class="mt-auto product-actions">
+                  <a
+                    href="/addToCart?productId={{ row[0] }}"
+                    class="btn btn-cart-custom"
+                  >
+                    <i class="fas fa-shopping-cart"></i>
+                    افزودن به سبد
+                  </a>
+
+                  <form
+                    action="{{ url_for('add_to_wishlist') }}"
+                    method="post"
+                    class="d-inline"
+                  >
+                    <input type="hidden" name="productId" value="{{ row[0] }}">
+
+                    <button type="submit" class="btn btn-wishlist-custom">
+                      <i class="fas fa-heart"></i>
+                      علاقه مندی
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="site-footer mt-4" dir="rtl">
+  <div class="container footer-content">
+    <div class="row gy-4 align-items-start">
+
+      <!-- Company introduction -->
+      <div class="col-lg-5 col-md-12">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img
+            src="{{ url_for('static', filename='images/gtnielit logo.png') }}"
+            class="footer-brand-logo"
+            alt="لوگوی بهین صنعت رادین زنگان"
+          >
+
+          <div>
+            <h3 class="footer-company-name">
+              بهین صنعت رادین زنگان
+            </h3>
+
+            <span class="footer-slogan">
+              تأسیسات آب، گاز و ساختمان
+            </span>
+          </div>
+        </div>
+
+        <p class="footer-description">
+          شرکت بهین صنعت رادین زنگان در زمینه معرفی تجهیزات تأسیسات آب،
+          گاز، گرمایش و تجهیزات مکانیکی ساختمان فعالیت می کند.
+        </p>
+      </div>
+
+      <!-- Quick access -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="footer-heading">دسترسی سریع</h4>
+
+        <ul class="footer-links">
+          <li>
+            <a href="/">
+              <i class="fas fa-angle-left ms-2"></i>
+              صفحه اصلی
+            </a>
+          </li>
+
+          <li>
+            <a href="/#products">
+              <i class="fas fa-angle-left ms-2"></i>
+              محصولات
+            </a>
+          </li>
+
+          <li>
+            <a href="/cart">
+              <i class="fas fa-angle-left ms-2"></i>
+              سبد خرید
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url_for('wishlist') }}">
+              <i class="fas fa-angle-left ms-2"></i>
+              علاقه مندی ها
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-heading">حوزه فعالیت</h4>
+
+        <div class="footer-contact">
+          <p>
+            <i class="fas fa-tint"></i>
+            <span>تأسیسات آب و آب رسانی</span>
+          </p>
+
+          <p>
+            <i class="fas fa-fire"></i>
+            <span>تأسیسات و تجهیزات گاز رسانی</span>
+          </p>
+
+          <p>
+            <i class="fas fa-building"></i>
+            <span>تأسیسات مکانیکی ساختمان</span>
+          </p>
+
+          <p>
+            <i class="fas fa-tools"></i>
+            <span>معرفی و عرضه تجهیزات تأسیساتی</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <span>
+        &copy; 2026 تمامی حقوق برای بهین صنعت رادین زنگان محفوظ است.
+      </span>
+
+      <span>
+        طراحی و  پیاده سازی: الهه دانیالی | پروژه کاراموزی
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
