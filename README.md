@@ -87,15 +87,10 @@ Then open the following address in your browser:
 http://127.0.0.1:5000
 ```
 
+```markdown
 ## Demo Administrator Account
 
-```text
-Email: admin@nielit.gov.in
-Password: admin@nielit.gov.in
-```
-
-This account is intended only for local development and educational demonstrations. For real-world use, the email address, password, and application secret key must be changed.
-
+Administrator credentials are not included in this public repository. Contact the project owner for authorized demonstration access.
 To set the secret key in PowerShell, use the following command:
 
 ```powershell
