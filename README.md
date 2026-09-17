@@ -87,9 +87,9 @@ Then open the following address in your browser:
 http://127.0.0.1:5000
 ```
 
-```markdown
-## Demo Administrator Account
 
+## Demo Administrator Account
+```markdown
 Administrator credentials are not included in this public repository. Contact the project owner for authorized demonstration access.
 To set the secret key in PowerShell, use the following command:
 
